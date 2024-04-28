@@ -89,9 +89,9 @@ def main():
 
     # Prediction logic
     input_data = pd.DataFrame({
-        'month': [selected_month],
         'Drug Brands': [selected_drug_brand],
-        'Branch': [selected_branch]
+        'Branch': [selected_branch],
+        'month': [selected_month]
     })
 
     input_data_o = input_data.apply(pd.to_numeric, errors='coerce')

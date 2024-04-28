@@ -19,6 +19,11 @@ def main():
     date_input = st.date_input("Select a date for prediction", pd.to_datetime('today'))
 
     # Drug Brands input
+    label_encoder_drugs = LabelEncoder()
+    label_encoder_branch = LabelEncoder()
+
+    mmdf['Drug Brands'] = label_encoder_drugs.fit_transform(mmdf['Drug Brands'])
+    mmdf['Branch'] = label_encoder_branch.fit_transform(mmdf['Branch'])
     drug_brands_options = label_encoder_drugs.classes_
     selected_drug_brand = st.selectbox("Select Drug Brand", drug_brands_options)
 

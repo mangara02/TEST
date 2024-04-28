@@ -9,8 +9,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 import joblib
 
-hd = pd.read_csv('/content/Hospital_data.csv')
-dd = pd.read_csv('/content/Drugs_data.csv')
+hd = pd.read_csv('Hospital_data.csv')
+dd = pd.read_csv('Drugs_data.csv')
 
 hd1 = hd[['Date OUT', 'Drug Brands', 'Drug Qty', 'Branch']]
 hd1.rename(columns={'Date OUT': 'Date', 'Drug Qty': 'OUT Qty'}, inplace=True)

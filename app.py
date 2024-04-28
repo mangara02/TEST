@@ -1,3 +1,4 @@
+import streamlit as st
 import pandas as pd
 import xgboost as xgb
 from sklearn.preprocessing import LabelEncoder

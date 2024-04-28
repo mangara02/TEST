@@ -73,9 +73,6 @@ def main():
     st.title("Drug Quantity Prediction App")
     st.write("This app predicts the quantity of drugs to be ordered based on historical data.")
 
-    # Date input
-    date_input = st.date_input("Select a date for prediction", pd.to_datetime('today'))
-
     # Drug Brands input
     drug_brands_options = label_encoder_drugs.classes_
     selected_drug_brand = st.selectbox("Select Drug Brand", drug_brands_options)
@@ -85,7 +82,7 @@ def main():
     selected_branch = st.selectbox("Select Branch", branch_options)
 
     # Month input
-    selected_month = pd.to_datetime(date_input).month
+    selected_month = st.slider("Select a month", 1, 12, 1)
 
     # Prediction logic
     input_data = pd.DataFrame({

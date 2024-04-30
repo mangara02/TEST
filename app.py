@@ -1,6 +1,6 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
-import math
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -33,7 +33,7 @@ def main():
     input_matrix = xgb.DMatrix(input_data_o)
 
     prediction = model.predict(input_matrix)
-    rounded_prediction = math.ceil(prediction[0])
+    rounded_prediction = np.ceil(prediction[0])
 
     st.write("Predicted Quantity:", rounded_prediction)
 

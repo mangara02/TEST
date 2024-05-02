@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import xgboost as xgb
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')

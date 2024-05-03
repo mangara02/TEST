@@ -25,7 +25,7 @@ def main():
         'month': [selected_month]
     })
 
-    prediction = model.predict(input_matrix)
+    prediction = model.predict(input_data)
     rounded_prediction = np.ceil(prediction[0])
 
     st.write("Predicted Quantity:", rounded_prediction)

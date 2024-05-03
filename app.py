@@ -5,7 +5,7 @@ import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
 label_encoder_branch = joblib.load('leb.pkl')
-model = joblib.load('xgb.pkl')
+model = joblib.load('rfr.pkl')
 
 def main():
     st.title("Drug Quantity Prediction App")

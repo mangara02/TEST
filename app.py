@@ -19,11 +19,12 @@ def main():
 
     selected_month = st.slider("Select a month", 1, 12, 1)
 
-    input_data = pd.DataFrame({
+    input_data = pd.DataFrame([{
         'Drug Brands': [selected_drug_brand],
         'Branch': [selected_branch],
         'month': [selected_month]
-    })
+    }])
+    st.dataframe(input_data)
 
     prediction = model.predict(input_data)
     rounded_prediction = np.ceil(prediction[0])

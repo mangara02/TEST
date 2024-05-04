@@ -23,9 +23,12 @@ def main():
 
     monthly_avg = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5, key=3)
 
+    selected_drug_brand_encoded = label_encoder_drugs.transform([selected_drug_brand])[0]
+    selected_branch_encoded = label_encoder_branch.transform([selected_branch])[0]
+
     input_data = pd.DataFrame({
-        'Drug Brands': [selected_drug_brand],
-        'Branch': [selected_branch],
+        'Drug Brands': [selected_drug_brand_encoded],
+        'Branch': [selected_branch_encoded],
         'Adjusted Qty': [Adjusted_Qty],
         'month': [selected_month],
         'monthly_avg': [monthly_avg]

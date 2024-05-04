@@ -30,14 +30,14 @@ def main():
         'Drug Brands': [selected_drug_brand_encoded],
         'Branch': [selected_branch_encoded],
         'Adjusted Qty': [Adjusted_Qty],
-        'month': [selected_month],
+        'month': [selected_month+1],
         'monthly_avg': [monthly_avg]
     })
 
     prediction = model.predict(input_data)
     rounded_prediction = np.ceil(prediction[0])
 
-    st.write("Predicted Quantity of drugs to be ordered:", rounded_prediction)
+    st.write("Predicted Quantity of drugs to be ordered next month:", rounded_prediction)
 
 if __name__ == '__main__':
     main()

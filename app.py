@@ -25,7 +25,7 @@ def main():
         'Drug Brands': [selected_drug_brand],
         'Branch': [selected_branch],
         'month': [selected_month],
-        'Adjusted_Qty': [Adjusted_Qty],
+        'Adjusted Qty': [Adjusted_Qty],
         'monthly_avg': [monthly_avg]
     }])
     st.dataframe(input_data)

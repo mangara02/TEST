@@ -23,13 +23,13 @@ def main():
 
     monthly_avg = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5, key=3)
 
-    input_data = pd.DataFrame([{
+    input_data = pd.DataFrame({
         'Drug Brands': [selected_drug_brand],
         'Branch': [selected_branch],
-        'Adjusted Qty': Adjusted_Qty,
+        'Adjusted Qty': [Adjusted_Qty],
         'month': [selected_month],
-        'monthly_avg': monthly_avg
-    }])
+        'monthly_avg': [monthly_avg]
+    })
     st.dataframe(input_data)
 
     prediction = model.predict(input_data)

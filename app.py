@@ -17,11 +17,11 @@ def main():
     branch_options = label_encoder_branch.classes_
     selected_branch = st.selectbox("Select Branch", branch_options)
 
-    Adjusted_Qty = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5, key=1)
+    Adjusted_Qty = st.slider('Select Adjusted Quantity', 0.0, -100.0, 100.0, 0.0, key=1)
     
-    selected_month = st.slider("Select a month", 1, 12, 1, key=2)
+    selected_month = st.slider("Select month", 1, 12, 1, key=2)
 
-    monthly_avg = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5, key=3)
+    monthly_avg = st.slider('Select Monthly Average', 0.0, 100.0, 50.0, 0.5, key=3)
 
     selected_drug_brand_encoded = label_encoder_drugs.transform([selected_drug_brand])[0]
     selected_branch_encoded = label_encoder_branch.transform([selected_branch])[0]
@@ -33,12 +33,11 @@ def main():
         'month': [selected_month],
         'monthly_avg': [monthly_avg]
     })
-    st.dataframe(input_data)
 
     prediction = model.predict(input_data)
     rounded_prediction = np.ceil(prediction[0])
 
-    st.write("Predicted Quantity:", rounded_prediction)
+    st.write("Predicted Quantity of drugs to be ordered:", rounded_prediction)
 
 if __name__ == '__main__':
     main()

@@ -17,9 +17,9 @@ def main():
     branch_options = label_encoder_branch.classes_
     selected_branch = st.selectbox("Select Branch", branch_options)
 
-    selected_month = st.slider("Select a month", 1, 12, 1)
-    Adjusted_Qty = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5)
-    monthly_avg = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5)
+    selected_month = st.slider("Select a month", 1, 12, 1, key=None)
+    Adjusted_Qty = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5, key=None)
+    monthly_avg = st.slider('Fly Ash', 0.0, 200.0, 55.5, 0.5, key=None)
 
     input_data = pd.DataFrame([{
         'Drug Brands': [selected_drug_brand],

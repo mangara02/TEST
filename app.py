@@ -21,6 +21,11 @@ def main():
     
     selected_month = st.slider("Select month", 1, 12, 1, key=2, help='Enter this month')
 
+    if selected_month == 12:
+        next_month = 1
+    else:
+        next_month = selected_month + 1
+
     monthly_avg = st.slider('Select Monthly Average', 7.5, 25.5, 16.5, 0.5, key=3, help='Enter the average quantity of drug brand sold per branch for this month')
 
     selected_drug_brand_encoded = label_encoder_drugs.transform([selected_drug_brand])[0]
@@ -30,7 +35,7 @@ def main():
         'Drug Brands': [selected_drug_brand_encoded],
         'Branch': [selected_branch_encoded],
         'Adjusted Qty': [Adjusted_Qty],
-        'month': [selected_month+1],
+        'month': [next_month],
         'monthly_avg': [monthly_avg]
     })
 

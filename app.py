@@ -18,8 +18,8 @@ def main():
     selected_branch = st.selectbox("Select Branch", branch_options)
 
     selected_month = st.slider("Select a month", 1, 12, 1)
-    Adjusted_Qty = st.number_input("Enter a float value a:", step=0.1)
-    monthly_avg = st.number_input("Enter a float value b:", step=0.1)
+    Adjusted_Qty = st.number_input("Enter a float value a:", key=1, step=0.1)
+    monthly_avg = st.number_input("Enter a float value b:", key=2, step=0.1)
 
     input_data = pd.DataFrame([{
         'Drug Brands': [selected_drug_brand],

@@ -9,7 +9,7 @@ model = joblib.load('rfr.pkl')
 
 def main():
     st.title("Drug Quantity Prediction App")
-    st.write("This app predicts the quantity of drugs to be ordered based on historical data.")
+    st.write("This app predicts the quantity of drugs to be ordered based on historical data")
 
     drug_brands_options = label_encoder_drugs.classes_
     selected_drug_brand = st.selectbox("Select Drug Brand", drug_brands_options)
@@ -17,11 +17,11 @@ def main():
     branch_options = label_encoder_branch.classes_
     selected_branch = st.selectbox("Select Branch", branch_options)
 
-    Adjusted_Qty = st.slider('Select Adjusted Quantity', -50.0, 250.0, -0.5, 0.5, key=1, help='aaaaaaaaaaaaaaaaa')
+    Adjusted_Qty = st.slider('Select Adjusted Quantity', -50.0, 250.0, -0.5, 0.5, key=1, help='Enter the adjusted quantity based on bought minus sold quantities for this month')
     
-    selected_month = st.slider("Select month", 1, 12, 1, key=2)
+    selected_month = st.slider("Select month", 1, 12, 1, key=2, help='Enter this month')
 
-    monthly_avg = st.slider('Select Monthly Average', 7.5, 25.5, 16.5, 0.5, key=3, help='aaaaaaaaaaaaaaaaaa')
+    monthly_avg = st.slider('Select Monthly Average', 7.5, 25.5, 16.5, 0.5, key=3, help='Enter the average quantity of drug brand sold per branch for this month')
 
     selected_drug_brand_encoded = label_encoder_drugs.transform([selected_drug_brand])[0]
     selected_branch_encoded = label_encoder_branch.transform([selected_branch])[0]

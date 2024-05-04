@@ -18,11 +18,15 @@ def main():
     selected_branch = st.selectbox("Select Branch", branch_options)
 
     selected_month = st.slider("Select a month", 1, 12, 1)
+    Adjusted Qty = st.slider("Select a month", -1000, 1000, 0)
+    monthly_avg = st.slider("Select a month", 1, 1000, 1)
 
     input_data = pd.DataFrame([{
         'Drug Brands': [selected_drug_brand],
         'Branch': [selected_branch],
         'month': [selected_month]
+        'Adj Qty': [Adjusted Qty],
+        'ma': [monthly_avg]
     }])
     st.dataframe(input_data)
 

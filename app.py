@@ -24,8 +24,8 @@ def main():
     input_data = pd.DataFrame([{
         'Drug Brands': [selected_drug_brand],
         'Branch': [selected_branch],
-        'month': [selected_month],
         'Adjusted Qty': [Adjusted_Qty],
+        'month': [selected_month],
         'monthly_avg': [monthly_avg]
     }])
     st.dataframe(input_data)

@@ -13,7 +13,7 @@ def main():
 
     if page == "Introduction :rocket:":
 
-    if page == "Descriptive analytics :bar_chart:":
+    elif page == "Descriptive analytics :bar_chart:":
         hd = pd.read_csv('Hospital_data.csv')
         dd = pd.read_csv('Drugs_data.csv')
 
@@ -68,7 +68,7 @@ def main():
             result = get_quantity_info(month_input, year_input, drug_brand_input, branch_input)
             st.write(result)
 
-    if page == "Predictive analytics :chart_with_upwards_trend:":
+    elif page == "Predictive analytics :chart_with_upwards_trend:":
         st.title("Drug Quantity Prediction App")
         st.write("This app predicts the quantity of drugs to be ordered based on historical data")
     

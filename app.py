@@ -9,6 +9,13 @@ model = joblib.load('rfr.pkl')
 
 def main():
 
+    st.set_page_config(
+        page_title="Quantity Analysis",
+        page_icon="⚙️",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
     page = st.sidebar.radio("**Go to:**", ("Introduction :rocket:", "Descriptive analytics :bar_chart:", "Predictive analytics :chart_with_upwards_trend:"))
 
     if page == "Introduction :rocket:":

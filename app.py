@@ -59,8 +59,8 @@ def main():
         st.title("Drug Quantity Information")
         st.write("Select parameters to get Sell Quantity")
         
-        month_input = st.text_input("Month", value='1')
-        year_input = st.text_input("Year", value='2020')
+        month_input = st.slider("Month", 1, 12, 1, key=1)
+        year_input = st.slider("year", 2020, 2024, 2020, key=2)
         drug_brand_input = st.selectbox("Drug Brand", options=distinct_drug_brands)
         branch_input = st.selectbox("Branch", options=distinct_branches)
         

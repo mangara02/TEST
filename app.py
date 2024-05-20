@@ -44,6 +44,9 @@ def main():
         
         monthly_avg = smmdf.groupby(['Drug Brands','Branch','month'])['Sell Quantity'].mean().reset_index()
 
+        distinct_drug_brands = smmdf['Drug Brands'].unique()
+        distinct_branches = smmdf['Branch'].unique()
+
         def get_quantity_info(month, year, drug_brand, branch):
             try:
                 info = smmdf[(smmdf['month'] == month) &

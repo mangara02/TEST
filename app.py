@@ -106,8 +106,9 @@ def main():
     
         prediction = model.predict(input_data)
         rounded_prediction = np.ceil(prediction[0])
-    
-        st.write("Predicted Quantity of drugs to be ordered next month:", rounded_prediction)
+
+        if st.button("Predict"):
+            st.write("Predicted Quantity of drugs to be ordered next month:", rounded_prediction)
 
 if __name__ == '__main__':
     main()

@@ -12,6 +12,7 @@ def main():
     page = st.sidebar.radio("**Go to:**", ("Introduction :rocket:", "Descriptive analytics :bar_chart:", "Predictive analytics :chart_with_upwards_trend:"))
 
     if page == "Introduction :rocket:":
+        st.title("COMING SOON")
 
     elif page == "Descriptive analytics :bar_chart:":
         hd = pd.read_csv('Hospital_data.csv')

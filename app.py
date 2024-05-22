@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+from pandasai import SmartDataframe
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -66,18 +67,39 @@ def main():
                     return "Data not found for the given inputs."
             except Exception as e:
                 return f"Error: {str(e)}"
+
+        sdf = SmartDataframe(smmdf)
+
+        def chat_with_smart_dataframe(input_text):
+            return sdf.chat(input_text)
         
         st.title("Drug Quantity Information")
-        st.write("Select parameters to get Sell Quantity")
+
+        use_llm = st.checkbox('Enable LLM Functionality')
+
+        if use_llm:
+            api_key = st.text_input("Enter your OpenAI API key:", type="password")
+            if api_key:
+                os.environ['PANDASAI_API_KEY'] = api_key
         
-        month_input = st.slider("Month", 1, 12, 1, key=1)
-        year_input = st.slider("year", 2020, 2024, 2020, key=2)
-        drug_brand_input = st.selectbox("Drug Brand", options=distinct_drug_brands)
-        branch_input = st.selectbox("Branch", options=distinct_branches)
+            input_text = st.text_input("Ask a question about the data:")
         
-        if st.button("Get Quantity Info"):
-            result = get_quantity_info(month_input, year_input, drug_brand_input, branch_input)
-            st.write(result)
+            if input_text and api_key:
+                answer = chat_with_smart_dataframe(input_text)
+                st.write(answer)
+            elif not api_key:
+                st.warning("Please enter your OpenAI API key.")
+        else:
+            st.write("Select parameters to get Sell Quantity")
+            
+            month_input = st.slider("Month", 1, 12, 1, key=1)
+            year_input = st.slider("year", 2020, 2024, 2020, key=2)
+            drug_brand_input = st.selectbox("Drug Brand", options=distinct_drug_brands)
+            branch_input = st.selectbox("Branch", options=distinct_branches)
+            
+            if st.button("Get Quantity Info"):
+                result = get_quantity_info(month_input, year_input, drug_brand_input, branch_input)
+                st.write(result)
 
     elif page == "Predictive analytics :chart_with_upwards_trend:":
         st.title("Drug Quantity Prediction App")

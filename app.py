@@ -6,9 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import accelerate
 import bitsandbytes as bnb
-from pandasai.llm import BambooLLM
-from pandasai.llm import OpenAI
-from pandasai import SmartDataframe, Agent
+from pandasai import SmartDataframe
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -80,22 +78,16 @@ def main():
         use_llm = st.checkbox('Enable LLM Functionality')
 
         if use_llm:
-            api_key = st.text_input("Enter your PandasAI API key:", type="password")
-
-            if api_key:
-                os.environ["PANDASAI_API_KEY"] = api_key
-            
-                agent = Agent(smmdf)
+            os.environ["PANDASAI_API_KEY"] = st.secrets["PANDASAI_API_KEY"]
+    
+            sdf = SmartDataframe(smmdf)
                 
-                query = st.text_input("Enter your query:")
+            query = st.text_input("Enter your query:")
                 
-                if query:
-                    response = agent.chat(query)
+            response = sdf.chat(query)
                     
-                    st.write("### Response")
-                    st.write(response)
-            else:
-                st.warning("Please enter your PandasAI API key to proceed.")
+            st.write("### Response")
+            st.write(response)
                 
         else:
             st.write("Select parameters to get Sell Quantity")

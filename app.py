@@ -6,7 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import accelerate
 import bitsandbytes as bnb
-from pandasai import Agent
+from pandasai import SmartDataframe
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -82,7 +82,7 @@ def main():
         if use_llm:
             os.environ["PANDASAI_API_KEY"] = st.secrets["PANDASAI_API_KEY"]
     
-            sdf = Agent(smmdf)
+            sdf = SmartDataframe(smmdf)
                 
             query = st.text_input("Enter your query:")
 

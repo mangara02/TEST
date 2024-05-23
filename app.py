@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
-from pandasai import SmartDataframe
+from pandasai import Agent
 from pandasai.llm.bamboo_llm import BambooLLM
 import joblib
 
@@ -70,7 +70,7 @@ def main():
             except Exception as e:
                 return f"Error: {str(e)}"
 
-        sdf = SmartDataframe(smmdf)
+        sdf = Agent(smmdf)
 
         def chat_with_smart_dataframe(input_text):
             return sdf.chat(input_text)

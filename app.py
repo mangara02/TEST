@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
-from pandasai import Agent
+from pandasai import SmartDataframe
 from pandasai.llm.bamboo_llm import BambooLLM
 import joblib
 
@@ -70,7 +70,8 @@ def main():
             except Exception as e:
                 return f"Error: {str(e)}"
 
-        sdf = Agent(smmdf)
+        bamboo_llm = BambooLLM()
+        sdf = SmartDataframe(smmdf, config={"llm": bamboo_llm})
 
         def chat_with_smart_dataframe(input_text):
             return sdf.chat(input_text)
@@ -87,7 +88,6 @@ def main():
             input_text = st.text_input("Ask a question about the data:")
         
             if input_text and api_key:
-                config.llm = BambooLLM()
                 answer = chat_with_smart_dataframe(input_text)
                 st.write(answer)
             elif not api_key:

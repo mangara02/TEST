@@ -2,7 +2,10 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
+import accelerate
+import bitsandbytes as bnb
 from pandasai.llm import BambooLLM
 from pandasai import SmartDataframe
 import joblib

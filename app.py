@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
-from pandasai import Agent
+from pandasai import SmartDataframe
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -69,7 +69,7 @@ def main():
             except Exception as e:
                 return f"Error: {str(e)}"
 
-        sdf = Agent(smmdf)
+        sdf = SmartDataframe(smmdf)
 
         def chat_with_smart_dataframe(input_text):
             return sdf.chat(input_text)

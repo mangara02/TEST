@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 from pandasai import SmartDataframe
-#from pandasai.llm.bamboo_llm import BambooLLM
+from pandasai.llm.bamboo_llm import BambooLLM
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -87,7 +87,7 @@ def main():
             input_text = st.text_input("Ask a question about the data:")
         
             if input_text and api_key:
-                #config.llm = BambooLLM()
+                config.llm = BambooLLM()
                 answer = chat_with_smart_dataframe(input_text)
                 st.write(answer)
             elif not api_key:

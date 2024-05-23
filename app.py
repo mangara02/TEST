@@ -84,14 +84,9 @@ def main():
                 
             query = st.text_input("Enter your query:")
 
-            if query:
-                try:
-                    response = sdf.chat(query)      
-                    st.write("### Response:")
-                    st.write(response)
-                except Exception as e:
-                    st.error(f"An error occurred: {e}")
-                    st.info("Please try again with another prompt.")
+            response = sdf.chat(query)      
+            st.write("### Response:")
+            st.write(response)
                 
         else:
             st.write("Select parameters to get Sell Quantity")

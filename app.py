@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 from pandasai import SmartDataframe
-from pandasai.llm import BambooLLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -69,6 +69,17 @@ def main():
                     return "Data not found for the given inputs."
             except Exception as e:
                 return f"Error: {str(e)}"
+
+        class BambooLLM:
+            def __init__(self, model_name: str = "pandasai/bamboo-llm"):
+                self.model_name = model_name
+                self.model = AutoModelForCausalLM.from_pretrained(model_name)
+                self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        
+            def generate(self, text: str) -> str:
+                inputs = self.tokenizer(text, return_tensors="pt")
+                outputs = self.model.generate(**inputs)
+                return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         bamboo_llm = BambooLLM()
         sdf = SmartDataframe(smmdf, config={"llm": bamboo_llm})

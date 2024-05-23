@@ -1,5 +1,8 @@
 streamlit
 pandas
 scikit-learn==1.2.2
+transformers
 torch
+bitsandbytes
+accelerate
 pandasai==2.0.17

@@ -6,6 +6,20 @@ from pandasai import SmartDataframe
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import joblib
 
+class BambooLLM:
+    def __init__(self, model_name: str = "pandasai/bamboo-llm"):
+        self.model_name = model_name
+        try:
+            self.model = AutoModelForCausalLM.from_pretrained(model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        except ImportError as e:
+            raise ImportError(f"Failed to load model {model_name}. Ensure you have the necessary backend installed. Error: {e}")
+
+    def generate(self, text: str) -> str:
+        inputs = self.tokenizer(text, return_tensors="pt")
+        outputs = self.model.generate(**inputs)
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+
 label_encoder_drugs = joblib.load('led.pkl')
 label_encoder_branch = joblib.load('leb.pkl')
 model = joblib.load('rfr.pkl')
@@ -69,17 +83,6 @@ def main():
                     return "Data not found for the given inputs."
             except Exception as e:
                 return f"Error: {str(e)}"
-
-        class BambooLLM:
-            def __init__(self, model_name: str = "pandasai/bamboo-llm"):
-                self.model_name = model_name
-                self.model = AutoModelForCausalLM.from_pretrained(model_name)
-                self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        
-            def generate(self, text: str) -> str:
-                inputs = self.tokenizer(text, return_tensors="pt")
-                outputs = self.model.generate(**inputs)
-                return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         bamboo_llm = BambooLLM()
         sdf = SmartDataframe(smmdf, config={"llm": bamboo_llm})

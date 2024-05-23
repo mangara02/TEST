@@ -3,6 +3,6 @@ pandas
 scikit-learn==1.2.2
 transformers
 torch
-pandasai==1.4.10
+pandasai==2.0.17
 bitsandbytes
 accelerate

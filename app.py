@@ -8,7 +8,7 @@ import accelerate
 import bitsandbytes as bnb
 from pandasai.llm import BambooLLM
 from pandasai.llm import OpenAI
-from pandasai import SmartDataframe
+from pandasai import SmartDataframe, Agent
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')
@@ -74,21 +74,28 @@ def main():
                     return "Data not found for the given inputs."
             except Exception as e:
                 return f"Error: {str(e)}"
-
-        def chat_with_smart_dataframe(input_text):
-            llm = OpenAI()
-            sdf = SmartDataframe(smmdf, config={"llm": llm})
-            return sdf.chat(input_text)
         
         st.title("Drug Quantity Information")
 
         use_llm = st.checkbox('Enable LLM Functionality')
 
         if use_llm:
-            #llm_key = st.text_input("Enter your OpenAI API key:", type="password")
-            input_text = st.text_input("Ask a question about the data:")
-            answer = chat_with_smart_dataframe(input_text)
-            st.write(answer)
+            api_key = st.text_input("Enter your PandasAI API key:", type="password")
+
+            if api_key:
+                os.environ["PANDASAI_API_KEY"] = api_key
+            
+                agent = Agent(smmdf)
+                
+                query = st.text_input("Enter your query:")
+                
+                if query:
+                    response = agent.chat(query)
+                    
+                    st.write("### Response")
+                    st.write(response)
+            else:
+                st.warning("Please enter your PandasAI API key to proceed.")
                 
         else:
             st.write("Select parameters to get Sell Quantity")

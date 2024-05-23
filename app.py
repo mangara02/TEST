@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
+import bitsandbytes as bnb
 from pandasai import SmartDataframe
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import joblib

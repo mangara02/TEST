@@ -6,6 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import accelerate
 import bitsandbytes as bnb
+from pandasai.llm import OpenAI
 from pandasai import SmartDataframe
 import joblib
 

@@ -5,3 +5,4 @@ transformers
 torch
 pandasai==1.4.10
 bitsandbytes
+accelerate

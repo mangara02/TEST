@@ -2,11 +2,8 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
-import bitsandbytes as bnb
-from pandasai import SmartDataframe
 from pandasai.llm import BambooLLM
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import accelerate
+from pandasai import SmartDataframe
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')

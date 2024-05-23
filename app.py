@@ -5,13 +5,18 @@ import pandas as pd
 import bitsandbytes as bnb
 from pandasai import SmartDataframe
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import accelerate
 import joblib
 
 class BambooLLM:
     def __init__(self, model_name: str = "pandasai/bamboo-llm"):
         self.model_name = model_name
         try:
-            self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map="cpu")
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                device_map="auto",
+                low_cpu_mem_usage=True
+            )
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         except ImportError as e:
             raise ImportError(f"Failed to load model {model_name}. Ensure you have the necessary backend installed. Error: {e}")

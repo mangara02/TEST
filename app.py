@@ -85,10 +85,8 @@ def main():
         use_llm = st.checkbox('Enable LLM Functionality')
 
         if use_llm:
-            api_key = st.text_input("Enter your OpenAI API key:", type="password")
             if api_key:
-                key=st.secrets['api_key']
-                os.environ['PANDASAI_API_KEY'] = key
+                os.environ['PANDASAI_API_KEY'] = st.text_input("Enter your OpenAI API key:", type="password")
         
             input_text = st.text_input("Ask a question about the data:")
         

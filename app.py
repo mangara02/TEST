@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import numpy as np
 import pandas as pd
+import torch
 from pandasai.llm import BambooLLM
 from pandasai import SmartDataframe
 import joblib

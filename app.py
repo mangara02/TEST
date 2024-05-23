@@ -7,6 +7,7 @@ import torch
 import accelerate
 import bitsandbytes as bnb
 from pandasai.llm import BambooLLM
+from pandasai.llm import OpenAI
 from pandasai import SmartDataframe
 import joblib
 
@@ -75,7 +76,7 @@ def main():
                 return f"Error: {str(e)}"
 
         def chat_with_smart_dataframe(input_text):
-            llm = BambooLLM(api_key=llm_key)
+            llm = OpenAI()
             sdf = SmartDataframe(smmdf, config={"llm": llm})
             return sdf.chat(input_text)
         
@@ -84,7 +85,7 @@ def main():
         use_llm = st.checkbox('Enable LLM Functionality')
 
         if use_llm:
-            llm_key = st.text_input("Enter your OpenAI API key:", type="password")
+            #llm_key = st.text_input("Enter your OpenAI API key:", type="password")
             input_text = st.text_input("Ask a question about the data:")
             answer = chat_with_smart_dataframe(input_text)
             st.write(answer)

@@ -82,14 +82,15 @@ def main():
 
         if use_llm:
             os.environ["PANDASAI_API_KEY"] = st.secrets["PANDASAI_API_KEY"]
+            
             llm = BambooLLM()
             sdf = SmartDataframe(smmdf, config={"llm": llm})
                 
             query = st.text_input("Enter your query:")
-
-            response = sdf.chat(query)      
-            st.write("### Response:")
-            st.write(response)
+      
+            if st.button("Response"):
+                response = sdf.chat(query)
+                st.write(response)
                 
         else:
             st.write("Select parameters to get Sell Quantity")

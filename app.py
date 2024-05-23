@@ -88,7 +88,6 @@ def main():
             if st.button("Save API Key"):
                 
                 if api_key:
-                    os.environ["PANDASAI_API_KEY"] = api_key
                     input_text = st.text_input("Ask a question about the data:")
                     answer = chat_with_smart_dataframe(input_text)
                     st.write(answer)

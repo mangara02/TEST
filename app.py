@@ -83,11 +83,15 @@ def main():
             sdf = SmartDataframe(smmdf)
                 
             query = st.text_input("Enter your query:")
-                
-            response = sdf.chat(query)
-                    
-            st.write("### Response")
-            st.write(response)
+
+            if query:
+                try:
+                    response = sdf.chat(query)      
+                    st.write("### Response:")
+                    st.write(response)
+                except Exception as e:
+                    st.error(f"An error occurred: {e}")
+                    st.info("Please try again with another prompt.")
                 
         else:
             st.write("Select parameters to get Sell Quantity")

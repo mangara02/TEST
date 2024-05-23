@@ -32,10 +32,12 @@ def main():
         dd = pd.read_csv('Drugs_data.csv')
 
         hd1 = hd[['Date OUT', 'Drug Brands', 'Drug Qty', 'Branch']]
-        hd1.rename(columns={'Date OUT': 'Date', 'Drug Qty': 'OUT Qty'}, inplace=True)
-        dd.rename(columns={'Drugs': 'Drug Brands', 'Qty': 'IN Qty'}, inplace=True)
+        hd1_copy = hd1.copy()
+        hd1_copy.rename(columns={'Date OUT': 'Date', 'Drug Qty': 'OUT Qty'}, inplace=True)
+        dd_copy = dd.copy()
+        dd_copy.rename(columns={'Drugs': 'Drug Brands', 'Qty': 'IN Qty'}, inplace=True)
         
-        mdf = pd.merge(dd, hd1, on=['Date', 'Drug Brands', 'Branch'], how='outer')
+        mdf = pd.merge(dd_copy, hd1_copy, on=['Date', 'Drug Brands', 'Branch'], how='outer')
         
         mdf.fillna(0, inplace=True)
         

@@ -6,7 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import accelerate
 import bitsandbytes as bnb
-from pandasai.llm import OpenAI
+from pandasai.llm import BambooLLM
 from pandasai import SmartDataframe
 import joblib
 
@@ -82,7 +82,7 @@ def main():
 
         if use_llm:
             os.environ["PANDASAI_API_KEY"] = st.secrets["PANDASAI_API_KEY"]
-            llm = OpenAI()
+            llm = BambooLLM()
             sdf = SmartDataframe(smmdf, config={"llm": llm})
                 
             query = st.text_input("Enter your query:")

@@ -85,16 +85,16 @@ def main():
         use_llm = st.checkbox('Enable LLM Functionality')
 
         if use_llm:
-            api_key = st.text_input("Enter your OpenAI API key:", type="password")
+            #api_key = st.text_input("Enter your OpenAI API key:", type="password")
     
-            if st.button("Save API Key"):
-                if api_key:
-                    os.environ["PANDASAI_API_KEY"] = api_key
-                    input_text = st.text_input("Ask a question about the data:")
-                    answer = chat_with_smart_dataframe(input_text)
-                    st.write(answer)
-                else:
-                    st.error("Please enter your OpenAI API key.")
+            #if st.button("Save API Key"):
+                #if api_key:
+            os.environ["PANDASAI_API_KEY"] = st.secrets['api_key']
+            input_text = st.text_input("Ask a question about the data:")
+            answer = chat_with_smart_dataframe(input_text)
+            st.write(answer)
+                #else:
+                    #st.error("Please enter your OpenAI API key.")
                 
         else:
             st.write("Select parameters to get Sell Quantity")

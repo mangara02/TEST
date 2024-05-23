@@ -22,7 +22,9 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
-
+    
+    os.environ["PANDASAI_API_KEY"] = st.secrets['api_key']
+    
     page = st.sidebar.radio("**Go to:**", ("Introduction :rocket:", "Descriptive analytics :bar_chart:", "Predictive analytics :chart_with_upwards_trend:"))
 
     if page == "Introduction :rocket:":
@@ -89,7 +91,6 @@ def main():
     
             #if st.button("Save API Key"):
                 #if api_key:
-            os.environ["PANDASAI_API_KEY"] = st.secrets['api_key']
             input_text = st.text_input("Ask a question about the data:")
             answer = chat_with_smart_dataframe(input_text)
             st.write(answer)

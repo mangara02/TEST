@@ -83,7 +83,8 @@ def main():
         if use_llm:
             api_key = st.text_input("Enter your OpenAI API key:", type="password")
             if api_key:
-                os.environ['PANDASAI_API_KEY'] = api_key
+                key=st.secrets['api_key']
+                os.environ['PANDASAI_API_KEY'] = key
         
             input_text = st.text_input("Ask a question about the data:")
         
@@ -92,6 +93,7 @@ def main():
                 st.write(answer)
             elif not api_key:
                 st.warning("Please enter your OpenAI API key.")
+                
         else:
             st.write("Select parameters to get Sell Quantity")
             

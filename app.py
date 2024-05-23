@@ -23,8 +23,6 @@ def main():
         initial_sidebar_state="expanded"
     )
     
-    os.environ["PANDASAI_API_KEY"] = st.secrets['api_key']
-    
     page = st.sidebar.radio("**Go to:**", ("Introduction :rocket:", "Descriptive analytics :bar_chart:", "Predictive analytics :chart_with_upwards_trend:"))
 
     if page == "Introduction :rocket:":
@@ -76,10 +74,9 @@ def main():
             except Exception as e:
                 return f"Error: {str(e)}"
 
-        bamboo_llm = BambooLLM()
-        sdf = SmartDataframe(smmdf, config={"llm": bamboo_llm})
-
         def chat_with_smart_dataframe(input_text):
+            bamboo_llm = BambooLLM()
+            sdf = SmartDataframe(smmdf, config={"llm": bamboo_llm})
             return sdf.chat(input_text)
         
         st.title("Drug Quantity Information")
@@ -87,15 +84,17 @@ def main():
         use_llm = st.checkbox('Enable LLM Functionality')
 
         if use_llm:
-            #api_key = st.text_input("Enter your OpenAI API key:", type="password")
-    
-            #if st.button("Save API Key"):
-                #if api_key:
-            input_text = st.text_input("Ask a question about the data:")
-            answer = chat_with_smart_dataframe(input_text)
-            st.write(answer)
-                #else:
-                    #st.error("Please enter your OpenAI API key.")
+            api_key = st.text_input("Enter your OpenAI API key:", type="password")
+            if st.button("Save API Key"):
+                
+                if api_key:
+                    os.environ["PANDASAI_API_KEY"] = st.secrets['api_key']
+                    input_text = st.text_input("Ask a question about the data:")
+                    answer = chat_with_smart_dataframe(input_text)
+                    st.write(answer)
+            
+                else:
+                    st.error("Please enter your OpenAI API key.")
                 
         else:
             st.write("Select parameters to get Sell Quantity")

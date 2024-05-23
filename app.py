@@ -75,7 +75,7 @@ def main():
                 return f"Error: {str(e)}"
 
         def chat_with_smart_dataframe(input_text):
-            sdf = SmartDataframe(smmdf, config={"llm": bamboo_llm})
+            sdf = SmartDataframe(smmdf)
             return sdf.chat(input_text)
         
         st.title("Drug Quantity Information")
@@ -85,7 +85,6 @@ def main():
         if use_llm:
             api_key = st.text_input("Enter your OpenAI API key:", type="password")
             os.environ["PANDASAI_API_KEY"] = api_key
-            bamboo_llm = BambooLLM()
             input_text = st.text_input("Ask a question about the data:")
             answer = chat_with_smart_dataframe(input_text)
             st.write(answer)

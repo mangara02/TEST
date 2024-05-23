@@ -5,4 +5,4 @@ transformers
 torch
 bitsandbytes
 accelerate
-pandasai==2.0.17
+pandasai

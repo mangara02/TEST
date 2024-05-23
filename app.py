@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 from pandasai import SmartDataframe
-from pandasai.llm.bamboo_llm import BambooLLM
+from pandasai.llm import BambooLLM
 import joblib
 
 label_encoder_drugs = joblib.load('led.pkl')

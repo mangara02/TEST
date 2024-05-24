@@ -26,7 +26,7 @@ def main():
     page = st.sidebar.radio("**Go to:**", ("Introduction :rocket:", "Descriptive analytics :bar_chart:", "Predictive analytics :chart_with_upwards_trend:"))
 
     if page == "Introduction :rocket:":
-        st.title("COMING SOON")
+        st.title("Drug Quantity Analysis")
         st.write("""
         In the realm of healthcare services, there exist three distinct hospital branches: RSMA, RSMD, and RSMS. 
         Each branch faces unique challenges in delivering optimal healthcare to the community. A crucial aspect 
@@ -36,8 +36,8 @@ def main():
         month to prevent both surpluses and shortages in each hospital's supply.
         
         For users interested in viewing past historical data, please navigate to the 
-        [Descriptive Analytics](#Descriptive-Analytics) section. If you wish to make predictions, proceed to the 
-        [Predictive Analytics](#Predictive-Analytics) section.
+        [Descriptive Analytics](#Descriptive analytics :bar_chart:) section. If you wish to make predictions, proceed to the 
+        [Predictive Analytics](#Predictive analytics :chart_with_upwards_trend:) section.
         """)
 
     elif page == "Descriptive analytics :bar_chart:":

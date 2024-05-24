@@ -35,9 +35,8 @@ def main():
         hospital branches. Consequently, it is imperative to optimize the distribution of medicines for the forthcoming 
         month to prevent both surpluses and shortages in each hospital's supply.
         
-        For users interested in viewing past historical data, please navigate to the 
-        [Descriptive Analytics](#Descriptive analytics :bar_chart:) section. If you wish to make predictions, proceed to the 
-        [Predictive Analytics](#Predictive analytics :chart_with_upwards_trend:) section.
+        For users interested in viewing past historical data, please navigate to the **Descriptive Analytics :bar_chart:** 
+        section. If you wish to make predictions, proceed to the **Predictive Analytics :chart_with_upwards_trend:** section.
         """)
 
     elif page == "Descriptive analytics :bar_chart:":

@@ -27,6 +27,18 @@ def main():
 
     if page == "Introduction :rocket:":
         st.title("COMING SOON")
+        st.write("""
+        In the realm of healthcare services, there exist three distinct hospital branches: RSMA, RSMD, and RSMS. 
+        Each branch faces unique challenges in delivering optimal healthcare to the community. A crucial aspect 
+        of their operations involves managing individual drug stock inventories. There is a constant demand for 
+        medications consumed by patients, and the inventory levels of these medications vary across the different 
+        hospital branches. Consequently, it is imperative to optimize the distribution of medicines for the forthcoming 
+        month to prevent both surpluses and shortages in each hospital's supply.
+        
+        For users interested in viewing past historical data, please navigate to the 
+        [Descriptive Analytics](#Descriptive-Analytics) section. If you wish to make predictions, proceed to the 
+        [Predictive Analytics](#Predictive-Analytics) section.
+        """)
 
     elif page == "Descriptive analytics :bar_chart:":
         hd = pd.read_csv('Hospital_data.csv')

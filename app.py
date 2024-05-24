@@ -90,7 +90,10 @@ def main():
       
             if st.button("Response"):
                 response = sdf.chat(query)
-                st.write(response)
+                if response.endswith(".png"):
+                    st.image(response)
+                else:
+                    st.write(response)
                 
         else:
             st.write("Select parameters to get Sell Quantity")

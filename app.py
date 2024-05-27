@@ -101,7 +101,7 @@ def main():
       
             if st.button("Response"):
                 response = sdf.chat(query)
-                if response.endswith(".png"):
+                if isinstance(response, str) and response.endswith(".png"):
                     st.image(response)
                 else:
                     st.write(response)

@@ -128,7 +128,7 @@ def main():
         branch_options = label_encoder_branch.classes_
         selected_branch = st.selectbox("Select Branch", branch_options)
     
-        Adjusted_Qty = st.slider('Select Adjusted Quantity', -50.0, 250.0, -0.5, 0.5, key=1, help='Enter the quantity based on bought minus sold quantities of selected drug brand per selected branch for this month')
+        Adjusted_Qty = st.number_input('Select Adjusted Quantity', -50.0, 250.0, -0.5, 0.5, key=1, help='Enter the quantity based on bought minus sold quantities of selected drug brand per selected branch for this month')
         
         selected_month = st.slider("Select month", 1, 12, 1, key=2, help='Enter this month')
     
@@ -137,7 +137,7 @@ def main():
         else:
             next_month = selected_month + 1
     
-        monthly_avg = st.slider('Select Monthly Average', 7.5, 25.5, 16.5, 0.5, key=3, help='Enter the average quantity of selected drug brand sold per selected branch for this month')
+        monthly_avg = st.number_input('Select Monthly Average', 7.5, 25.5, 16.5, 0.5, key=3, help='Enter the average quantity of selected drug brand sold per selected branch for this month')
     
         selected_drug_brand_encoded = label_encoder_drugs.transform([selected_drug_brand])[0]
         selected_branch_encoded = label_encoder_branch.transform([selected_branch])[0]
